@@ -1,6 +1,7 @@
 import { Collection, MongoClient } from "mongodb";
 import { Lucia } from "lucia";
 import { MongodbAdapter } from "@lucia-auth/adapter-mongodb";
+import { StringToBoolean } from "class-variance-authority/types";
 
 // initialize db connection
 const client = new MongoClient(process.env.DB_URI!);
@@ -18,6 +19,8 @@ export const SessionCollection = db.collection(
 // types
 interface UserDoc {
   _id: string;
+  username: string;
+  hashed_password: string;
 }
 
 interface SessionDoc {
