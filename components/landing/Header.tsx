@@ -1,5 +1,5 @@
 import logout from "@/actions/logout";
-import { validateRequest } from "@/lib/auth";
+import { validateRequest, lucia } from "@/lib/auth";
 import Image from "next/image";
 import Link from "next/link";
 
