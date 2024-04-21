@@ -13,8 +13,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ArrowBigLeft } from "lucide-react";
 import Link from "next/link";
+import signup from "@/actions/signup";
 
 const formSchema = z
   .object({
@@ -42,7 +42,9 @@ const Signup = () => {
     },
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    signup(form.getValues());
+  };
 
   return (
     <main className='h-screen grid place-items-center'>

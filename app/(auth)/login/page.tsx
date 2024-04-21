@@ -14,22 +14,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import login from "@/actions/login";
 
-const formSchema = z
-  .object({
-    username: z.string().min(3).max(20),
-    password: z.string().min(8).max(100),
-    passwordConfirmation: z.string(),
-  })
-  .refine(
-    (data) => {
-      return data.password === data.passwordConfirmation;
-    },
-    {
-      message: "Passwords do not match",
-      path: ["passwordConfirmation"],
-    }
-  );
+const formSchema = z.object({
+  username: z.string().min(3).max(20),
+  password: z.string().min(8).max(100),
+});
 
 const Login = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -37,17 +27,19 @@ const Login = () => {
     defaultValues: {
       username: "",
       password: "",
-      passwordConfirmation: "",
     },
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    login(form.getValues());
+  };
 
   return (
     <main className='h-screen grid place-items-center'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
+          // action={login}
           className='max-w-md w-full flex flex-col gap-4'>
           <div className='flex justify-between items-end'>
             <h1 className='text-4xl font-light'>Login</h1>

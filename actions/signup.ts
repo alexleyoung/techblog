@@ -7,8 +7,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { Argon2id } from "oslo/password";
 
-const signup = async (formData: FormData): Promise<ActionResult> => {
-  const username = formData.get("username");
+const signup = async (formData: signupData): Promise<ActionResult> => {
+  const username = formData.username;
   if (
     typeof username !== "string" ||
     username.length < 3 ||
@@ -20,7 +20,7 @@ const signup = async (formData: FormData): Promise<ActionResult> => {
     };
   }
 
-  const password = formData.get("password");
+  const password = formData.password;
   if (
     typeof password !== "string" ||
     password.length < 6 ||
@@ -60,6 +60,12 @@ const signup = async (formData: FormData): Promise<ActionResult> => {
 
 interface ActionResult {
   error: string;
+}
+
+interface signupData {
+  username: string;
+  password: string;
+  passwordConfirmation: string;
 }
 
 export default signup;

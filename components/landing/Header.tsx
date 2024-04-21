@@ -10,8 +10,9 @@ const Header = () => {
           ISU TECH
         </Link>
       </div>
-      <nav>
+      <nav className='flex gap-4 tracking-wide'>
         <Link href='#featured'>Featured</Link>
+        <Link href='/login'>Login</Link>
       </nav>
     </header>
   );

@@ -1,16 +1,14 @@
 import { Collection, MongoClient } from "mongodb";
-import { Lucia } from "lucia";
-import { MongodbAdapter } from "@lucia-auth/adapter-mongodb";
-import { StringToBoolean } from "class-variance-authority/types";
 
 // initialize db connection
 const client = new MongoClient(process.env.DB_URI!);
-async () => {
+const connect = async () => {
   await client.connect();
+  console.log("Connected to db");
 };
 
 // export user and session collctions
-const db = client.db();
+const db = client.db(process.env.DB_NAME!);
 export const UserCollection = db.collection("users") as Collection<UserDoc>;
 export const SessionCollection = db.collection(
   "sessions"
@@ -28,3 +26,5 @@ interface SessionDoc {
   expires_at: Date;
   user_id: string;
 }
+
+connect();
