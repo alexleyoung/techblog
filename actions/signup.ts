@@ -1,6 +1,6 @@
 "use server";
 
-import { lucia } from "@/lib/auth";
+import { lucia, validateRequest } from "@/lib/auth";
 import { UserCollection } from "@/lib/db";
 import { generateId } from "lucia";
 import { cookies } from "next/headers";
@@ -8,6 +8,12 @@ import { redirect } from "next/navigation";
 import { Argon2id } from "oslo/password";
 
 const signup = async (formData: signupData): Promise<ActionResult> => {
+  const { user } = await validateRequest();
+
+  if (user) {
+    return redirect("/");
+  }
+
   const username = formData.username;
   if (
     typeof username !== "string" ||
