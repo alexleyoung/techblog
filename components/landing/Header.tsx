@@ -1,28 +1,85 @@
 import logout from "@/actions/logout";
-import { validateRequest, lucia } from "@/lib/auth";
+import { validateRequest } from "@/lib/auth";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { AlignRight } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Header = async () => {
   const { user } = await validateRequest();
 
   return (
-    <header className='container fixed left-1/2 transform -translate-x-1/2 border bg-background backdrop-blur-md h-14 w-[90%] rounded-l-full rounded-r-full shadow-md mt-4 flex justify-between items-center'>
-      <div className='flex gap-2'>
+    <header className='container border bg-background backdrop-blur-md h-14 w-[90%] rounded-l-full rounded-r-full shadow-md mt-4 flex justify-between items-center'>
+      <div className='flex gap-2 '>
         {/* <Image src='' alt='' height={24} width={24} /> */}
-        <Link href='#' className='font-light tracking-wide'>
+        <Link href='#' className='font-light tracking-wide font-2xl '>
           ISU TECH
         </Link>
       </div>
-      <nav className='flex gap-4 tracking-wide'>
-        <Link href='#featured'>Featured</Link>
+      <nav className='hidden sm:flex gap-4 tracking-wide font-light items-center'>
+        <Link
+          href='#featured'
+          className='hover:text-primary/50 transition-colors duration-300'>
+          Featured
+        </Link>
         {user ? (
           <form action={logout}>
-            <button type='submit'>Logout</button>
+            <button
+              type='submit'
+              className='hover:text-primary/50 transition-colors duration-300'>
+              Logout
+            </button>
           </form>
         ) : (
-          <Link href='/login'>Login</Link>
+          <Link
+            href='/login'
+            className='hover:text-primary/50 transition-colors duration-300'>
+            Login
+          </Link>
         )}
+        <ThemeToggle />
+      </nav>
+      <nav className='sm:hidden'>
+        <Sheet>
+          <SheetTrigger className='flex items-center'>
+            <AlignRight size={24} />
+          </SheetTrigger>
+          <SheetContent className='flex flex-col gap-8'>
+            <SheetHeader>
+              <SheetTitle>
+                <span className='font-normal tracking-wide'>Menu</span>
+              </SheetTitle>
+              <SheetClose />
+            </SheetHeader>
+            <div className='w-full flex flex-col items-center gap-4 font-light tracking-wide'>
+              <Link
+                href='#featured'
+                className='hover:text-primary/50 transition-colors duration-300'>
+                Featured
+              </Link>
+              {user ? (
+                <form action={logout}>
+                  <button type='submit'>Logout</button>
+                </form>
+              ) : (
+                <Link
+                  href='/login'
+                  className='hover:text-primary/50 transition-colors duration-300'>
+                  Login
+                </Link>
+              )}
+              <ThemeToggle />
+            </div>
+          </SheetContent>
+        </Sheet>
       </nav>
     </header>
   );
