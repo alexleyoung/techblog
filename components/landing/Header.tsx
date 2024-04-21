@@ -18,13 +18,18 @@ const Header = async () => {
 
   return (
     <header className='container border bg-background backdrop-blur-md h-14 w-[90%] rounded-l-full rounded-r-full shadow-md mt-4 flex justify-between items-center'>
-      <div className='flex gap-2 '>
-        {/* <Image src='' alt='' height={24} width={24} /> */}
-        <Link href='#' className='font-light tracking-wide font-2xl '>
-          ISU TECH
+      <div className='flex gap-3 '>
+        <Image
+          src='/images/cselogo.png'
+          alt='cse logo'
+          height={24}
+          width={24}
+        />
+        <Link href='#' className='font-light tracking-wide font-2xl'>
+          CSE TECH
         </Link>
       </div>
-      <nav className='hidden sm:flex gap-4 tracking-wide font-light items-center'>
+      <nav className='hidden sm:flex gap-4 tracking-wide font-light items-center text-sm'>
         <Link
           href='#featured'
           className='hover:text-primary/50 transition-colors duration-300'>

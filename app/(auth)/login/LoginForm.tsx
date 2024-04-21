@@ -42,7 +42,7 @@ const LoginForm = () => {
         className='max-w-md w-full flex flex-col gap-4'>
         <div className='flex justify-between items-end'>
           <h1 className='text-4xl font-light'>Login</h1>
-          <Link href='/'>ISU TECH</Link>
+          <Link href='/'>CSE TECH</Link>
         </div>
         <FormField
           control={form.control}
