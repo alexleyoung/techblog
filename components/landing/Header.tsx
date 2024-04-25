@@ -30,7 +30,7 @@ const Header = async () => {
         </Link>
       </div>
       <nav className='hidden sm:flex gap-4 tracking-wide font-light items-center text-sm'>
-        {user?.id === "9rw43q2yy3rwmon1" && (
+        {user?.id === process.env.ADMIN && (
           <Link
             href='/admin'
             className='hover:text-primary/50 transition-colors duration-300'>

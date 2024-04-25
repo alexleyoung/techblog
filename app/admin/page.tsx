@@ -5,7 +5,7 @@ const Admin = async () => {
   const { user } = await validateRequest();
   if (!user) {
     return redirect("/");
-  } else if (user.id !== "9rw43q2yy3rwmon1") {
+  } else if (user.id !== process.env.ADMIN) {
     console.log("User is not an admin: " + user.id);
     return redirect("/");
   }
