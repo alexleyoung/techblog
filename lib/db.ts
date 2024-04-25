@@ -4,7 +4,6 @@ import { Collection, MongoClient } from "mongodb";
 const client = new MongoClient(process.env.DB_URI!);
 const connect = async () => {
   await client.connect();
-  console.log("Connected to db");
 };
 
 // export user and session collctions

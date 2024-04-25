@@ -12,19 +12,20 @@ export const lucia = new Lucia(adapter, {
       secure: process.env.NODE_ENV === "production",
     },
   },
-  getUserAttributes: async (databaseUserAttributes) => {
-    return { username: databaseUserAttributes.username };
+  getUserAttributes: async (attributes: DatabaseUserAttributes) => {
+    return { username: attributes.username };
   },
 });
 
 export const validateRequest = cache(
-  async (): Promise<{ user: User | null; session: Session | null }> => {
+  async (): Promise<
+    { user: User; session: Session } | { user: null; session: null }
+  > => {
     const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
 
     if (!sessionId) {
       return { user: null, session: null };
     }
-
     const result = await lucia.validateSession(sessionId);
 
     // nextjs throws error if you try and set cookie while page rendering

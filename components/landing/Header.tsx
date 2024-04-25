@@ -30,6 +30,13 @@ const Header = async () => {
         </Link>
       </div>
       <nav className='hidden sm:flex gap-4 tracking-wide font-light items-center text-sm'>
+        {user?.id === "9rw43q2yy3rwmon1" && (
+          <Link
+            href='/admin'
+            className='hover:text-primary/50 transition-colors duration-300'>
+            Admin
+          </Link>
+        )}
         <Link
           href='#featured'
           className='hover:text-primary/50 transition-colors duration-300'>
