@@ -72,6 +72,13 @@ const Header = async () => {
               <SheetClose />
             </SheetHeader>
             <div className='w-full flex flex-col items-center gap-4 font-light tracking-wide'>
+              {user?.id === process.env.ADMIN && (
+                <Link
+                  href='/admin'
+                  className='hover:text-primary/50 transition-colors duration-300'>
+                  Admin
+                </Link>
+              )}
               <Link
                 href='#featured'
                 className='hover:text-primary/50 transition-colors duration-300'>
@@ -79,7 +86,11 @@ const Header = async () => {
               </Link>
               {user ? (
                 <form action={logout}>
-                  <button type='submit'>Logout</button>
+                  <button
+                    type='submit'
+                    className='hover:text-primary/50 transition-colors duration-300'>
+                    Logout
+                  </button>
                 </form>
               ) : (
                 <Link
