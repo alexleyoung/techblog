@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import login from "@/actions/login";
+import { useState } from "react";
 
 const formSchema = z.object({
   username: z.string().min(3).max(20),
@@ -22,6 +23,8 @@ const formSchema = z.object({
 });
 
 const LoginForm = () => {
+  const [error, setError] = useState<string | null>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,14 +34,16 @@ const LoginForm = () => {
   });
 
   const handleSubmit = async () => {
-    login(form.getValues());
+    const result = await login(form.getValues());
+    if (result.error) {
+      setError(result.error);
+    }
   };
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        // action={login}
         className='max-w-md w-full flex flex-col gap-4'>
         <div className='flex justify-between items-end'>
           <h1 className='text-4xl font-light'>Login</h1>
@@ -75,7 +80,9 @@ const LoginForm = () => {
           }}
         />
         <Button type='submit'>Submit</Button>
+        {error && <FormMessage>{error}</FormMessage>}
         <Link href='/signup'>Don't have an account? Signup here.</Link>
+        {}
       </form>
     </Form>
   );

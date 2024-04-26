@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import signup from "@/actions/signup";
+import { useState } from "react";
 
 const formSchema = z
   .object({
@@ -33,6 +34,8 @@ const formSchema = z
   );
 
 const SignupForm = () => {
+  const [error, setError] = useState<string | null>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,8 +45,11 @@ const SignupForm = () => {
     },
   });
 
-  const handleSubmit = () => {
-    signup(form.getValues());
+  const handleSubmit = async () => {
+    const result = await signup(form.getValues());
+    if (result.error) {
+      setError(result.error);
+    }
   };
 
   return (
@@ -105,6 +111,7 @@ const SignupForm = () => {
           }}
         />
         <Button type='submit'>Submit</Button>
+        {error && <FormMessage>{error}</FormMessage>}
         <Link href='/login'>Have an account? Login here.</Link>
       </form>
     </Form>

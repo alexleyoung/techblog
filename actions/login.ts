@@ -8,29 +8,7 @@ import { Argon2id } from "oslo/password";
 
 const login = async (formData: loginData): Promise<ActionResult> => {
   const username = formData.username;
-  // const username = formData.get("username");
-  if (
-    typeof username !== "string" ||
-    username.length < 3 ||
-    username.length > 31 ||
-    !/^[a-z0-9_-]+$/.test(username)
-  ) {
-    return {
-      error: "Invalid username",
-    };
-  }
-
   const password = formData.password;
-  // const password = formData.get("password");
-  if (
-    typeof password !== "string" ||
-    password.length < 6 ||
-    password.length > 255
-  ) {
-    return {
-      error: "Invalid password",
-    };
-  }
 
   const existingUser = await UserCollection.findOne({ username });
   if (!existingUser) {
