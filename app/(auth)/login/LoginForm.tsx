@@ -35,7 +35,7 @@ const LoginForm = () => {
 
   const handleSubmit = async () => {
     const result = await login(form.getValues());
-    if (result.error) {
+    if (result) {
       setError(result.error);
     }
   };

@@ -34,6 +34,7 @@ const login = async (formData: loginData): Promise<ActionResult> => {
     sessionCookie.value,
     sessionCookie.attributes
   );
+  if (username === "admin") return redirect("/admin");
   return redirect("/");
 };
 
