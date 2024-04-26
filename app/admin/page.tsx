@@ -12,9 +12,7 @@ const Admin = async () => {
 
   return (
     <main className='p-8'>
-      <h1 className='text-2xl tracking-wide border-b border-muted pb-4'>
-        Overview
-      </h1>
+      <h1 className='text-2xl tracking-wide mb-8'>Overview</h1>
       <PostList />
     </main>
   );

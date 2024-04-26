@@ -5,7 +5,7 @@ import { PanelsTopLeftIcon, Pen } from "lucide-react";
 
 const Aside = () => {
   return (
-    <aside className='w-48 fixed m-auto h-full bg-background border-r border-muted flex flex-col justify-between items-center p-8'>
+    <aside className='w-48 fixed m-auto h-full bg-background border-r border-foreground/10 flex flex-col justify-between items-center p-8'>
       <div className='flex flex-col items-center gap-4'>
         <div className='flex gap-3 items-center mb-8'>
           <Image
@@ -20,13 +20,13 @@ const Aside = () => {
         </div>
         <Link
           href='/admin'
-          className='flex gap-2 self-start w-full hover:bg-muted px-3 py-2 rounded-xl text-primary/80 hover:text-primary transition-colors'>
+          className='flex gap-2 self-start w-full hover:bg-muted px-3 py-2 rounded-xl text-foreground/80 hover:text-foreground transition-colors'>
           <PanelsTopLeftIcon size={20} strokeWidth={1} />
           OVERVIEW
         </Link>
         <Link
-          href='/admin'
-          className='flex gap-2 self-start w-full hover:bg-muted px-3 py-2 rounded-xl text-primary/80 hover:text-primary transition-colors'>
+          href='/admin/create'
+          className='flex gap-2 self-start w-full hover:bg-muted px-3 py-2 rounded-xl text-foreground/80 hover:text-foreground transition-colors'>
           <Pen size={20} strokeWidth={1} />
           CREATE
         </Link>
