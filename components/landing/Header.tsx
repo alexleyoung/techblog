@@ -17,7 +17,7 @@ const Header = async () => {
   const { user } = await validateRequest();
 
   return (
-    <header className='container border bg-background backdrop-blur-md h-14 w-[90%] rounded-l-full rounded-r-full shadow-md mt-4 flex justify-between items-center'>
+    <header className='container fixed border left-1/2 -translate-x-1/2 backdrop-blur-md h-14 w-[90%] rounded-l-full rounded-r-full shadow-md mt-4 flex justify-between items-center'>
       <div className='flex gap-3 items-center'>
         <Image
           src='/images/cselogo.png'

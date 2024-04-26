@@ -9,7 +9,7 @@ export const getPost = async (id: string) => {
   return data as Post;
 };
 
-type Post = {
+export type Post = {
   id: Number;
   title: String;
   title_slug: String;

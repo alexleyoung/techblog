@@ -1,8 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { Button } from "@/components/ui/button";
-import { PanelsTopLeftIcon } from "lucide-react";
+import { PanelsTopLeftIcon, Pen } from "lucide-react";
 
 const Aside = () => {
   return (
@@ -19,12 +18,18 @@ const Aside = () => {
             CSE TECH
           </Link>
         </div>
-        <Button asChild variant='ghost' className='w-full'>
-          <Link href='/admin' className='flex gap-2'>
-            <PanelsTopLeftIcon size={20} strokeWidth={1} />
-            OVERVIEW
-          </Link>
-        </Button>
+        <Link
+          href='/admin'
+          className='flex gap-2 self-start w-full hover:bg-muted px-3 py-2 rounded-xl text-primary/80 hover:text-primary transition-colors'>
+          <PanelsTopLeftIcon size={20} strokeWidth={1} />
+          OVERVIEW
+        </Link>
+        <Link
+          href='/admin'
+          className='flex gap-2 self-start w-full hover:bg-muted px-3 py-2 rounded-xl text-primary/80 hover:text-primary transition-colors'>
+          <Pen size={20} strokeWidth={1} />
+          CREATE
+        </Link>
       </div>
       <ThemeToggle />
     </aside>
