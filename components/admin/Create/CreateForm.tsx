@@ -36,24 +36,14 @@ const CreateForm = ({
   post?: Post | null;
   refresh?: (() => Promise<void>) | null;
 }) => {
-  let form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
-      author: "",
-      content: "",
+      title: String(post?.title) || "",
+      author: String(post?.author) || "",
+      content: String(post?.content) || "",
     },
   });
-  if (post) {
-    form = useForm<z.infer<typeof formSchema>>({
-      resolver: zodResolver(formSchema),
-      defaultValues: {
-        title: String(post.title),
-        author: String(post.author),
-        content: String(post.content),
-      },
-    });
-  }
 
   const handleSubmit = async () => {
     if (!post && !refresh) {

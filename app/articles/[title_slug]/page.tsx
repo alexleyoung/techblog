@@ -22,7 +22,7 @@ const Post = () => {
 
   useEffect(() => {
     findPost();
-  }, []);
+  }, [findPost]);
 
   if (error) {
     return (

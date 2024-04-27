@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const RecentPostCard = ({ post }: { post: Post }) => {
   return (
-    <Link href={`/articles/${post.title_slug}`} target='_blank'>
+    <Link href={`/articles/${post.title_slug}`}>
       <div className='w-full grid grid-cols-10 gap-3 border p-6 shadow-lg hover:scale-[103%] transition-all duration-300 rounded-sm'>
         <div className='col-span-3' />
         <div className='flex flex-col col-span-7 justify-center items-end text-right h-full gap-2'>
