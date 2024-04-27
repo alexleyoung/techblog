@@ -5,7 +5,7 @@ import { Post, getPost } from "@/lib/api/posts";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const Post = () => {
+const Article = () => {
   const { title_slug } = useParams();
   const [data, setData] = useState<Post>();
   const [error, setError] = useState<Error | null>(null);
@@ -62,4 +62,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default Article;
