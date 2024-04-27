@@ -1,6 +1,6 @@
 "use client";
 
-import { Post, deletePost, updatePost } from "../../lib/api/posts";
+import { Post, deletePost } from "../../lib/api/posts";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,24 +22,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Trash, NotebookPen } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
 import CreateForm from "./Create/CreateForm";
 
-const Post = ({
+const AdminPost = ({
   post,
   refresh,
 }: {
   post: Post;
   refresh: () => Promise<void>;
 }) => {
-  const [title, setTitle] = useState(String(post.title));
-  const [author, setAuthor] = useState(String(post.author));
-  const [content, setContent] = useState(String(post.content));
-
   return (
     <div
       key={String(post.id)}
@@ -106,4 +98,4 @@ const Post = ({
   );
 };
 
-export default Post;
+export default AdminPost;
