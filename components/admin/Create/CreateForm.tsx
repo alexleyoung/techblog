@@ -39,9 +39,9 @@ const CreateForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: String(post?.title) || "",
-      author: String(post?.author) || "",
-      content: String(post?.content) || "",
+      title: String(post ? post.title : ""),
+      author: String(post ? post.author : ""),
+      content: String(post ? post.content : ""),
     },
   });
 
