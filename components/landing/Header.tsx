@@ -18,17 +18,17 @@ const Header = async () => {
 
   return (
     <header className='container fixed border z-50 left-1/2 -translate-x-1/2 backdrop-blur-md h-14 w-[90%] rounded-l-full rounded-r-full shadow-md mt-4 flex justify-between items-center'>
-      <div className='flex gap-3 items-center'>
+      <Link
+        href='/'
+        className='font-light tracking-wide font-2xl flex gap-3 items-center'>
         <Image
           src='/images/cselogo.png'
           alt='cse logo'
           height={24}
           width={24}
         />
-        <Link href='/' className='font-light tracking-wide font-2xl'>
-          CSE TECH
-        </Link>
-      </div>
+        CSE TECH
+      </Link>
       <nav className='hidden sm:flex gap-4 tracking-wide font-light items-center text-sm'>
         {user?.id === process.env.ADMIN && (
           <Link
@@ -38,7 +38,7 @@ const Header = async () => {
           </Link>
         )}
         <Link
-          href='#featured'
+          href='/#featured'
           className='hover:text-primary/50 transition-colors duration-300'>
           Featured
         </Link>
@@ -80,7 +80,7 @@ const Header = async () => {
                 </Link>
               )}
               <Link
-                href='#featured'
+                href='/#featured'
                 className='hover:text-primary/50 transition-colors duration-300'>
                 Featured
               </Link>
