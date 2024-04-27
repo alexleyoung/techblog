@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Post, createPost, updatePost } from "@/lib/api/crud";
+import { Post, createPost, updatePost } from "@/lib/api/posts";
 
 const formSchema = z.object({
   title: z.string().min(1).max(100),

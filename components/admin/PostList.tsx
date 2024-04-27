@@ -1,6 +1,6 @@
 "use client";
 
-import { getPosts } from "@/lib/api/crud";
+import { getPosts } from "@/lib/api/posts";
 import Post from "@/components/admin/Post";
 import { useState, useEffect } from "react";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { Post, deletePost, updatePost } from "../../lib/api/crud";
+import { Post, deletePost, updatePost } from "../../lib/api/posts";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -71,7 +71,9 @@ const Post = ({
       </h2>
       <p>{String(post.timestamp).slice(0, 10)}</p>
       <p className='flex justify-between'>
-        {post.content.slice(0, 30) + "..."}
+        {post.content.length > 30
+          ? post.content.slice(0, 30) + "..."
+          : post.content}
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant='destructive'>
