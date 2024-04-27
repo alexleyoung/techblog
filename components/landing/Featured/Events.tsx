@@ -12,8 +12,8 @@ const Events = ({ className }: { className?: string }) => {
         "grid grid-rows-3 border border-foreground/30 gap-4 rounded-2xl p-4",
         className
       )}>
-      {events.map((Event) => {
-        return <EventCard />;
+      {events.map((Event, i) => {
+        return <EventCard key={i} />;
       })}
     </div>
   );

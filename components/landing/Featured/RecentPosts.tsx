@@ -23,8 +23,8 @@ const RecentPosts = ({ className }: { className: string }) => {
         "flex flex-col lg:grid lg:grid-rows-3 border border-foreground/30 gap-4 rounded-2xl p-6",
         className
       )}>
-      {recents.map((recent) => {
-        return <RecentPostCard post={recent} />;
+      {recents.map((recent, i) => {
+        return <RecentPostCard key={i} post={recent} />;
       })}
     </div>
   );

@@ -3,10 +3,17 @@ export const getPosts = async () => {
   const posts = await result.json();
   return posts as Post[];
 };
-export const getPost = async (post: Post) => {
-  const result = await fetch(`http://localhost:8081/posts/${post.title_slug}`);
-  const data = await result.json();
-  return data as Post;
+export const getPost = async (title_slug: string) => {
+  try {
+    const result = await fetch(`http://localhost:8081/posts/${title_slug}`);
+    if (!result.ok) {
+      return { data: null, error: { message: String(result.status) } as Error };
+    }
+    const data = await result.json();
+    return { post: data as Post, error: null };
+  } catch (error) {
+    return { data: null, error: error as Error };
+  }
 };
 
 export const createPost = async (post: {

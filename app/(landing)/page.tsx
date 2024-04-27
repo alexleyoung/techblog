@@ -5,12 +5,12 @@ import Footer from "@/components/landing/Footer";
 
 const Home = () => {
   return (
-    <>
+    <div className='flex flex-col gap-24'>
       <Header />
       <Hero />
       <Featured />
       <Footer />
-    </>
+    </div>
   );
 };
 
