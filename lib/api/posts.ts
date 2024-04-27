@@ -1,11 +1,13 @@
 export const getPosts = async () => {
-  const result = await fetch("http://localhost:8081/posts");
+  const result = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/`);
   const posts = await result.json();
   return posts as Post[];
 };
 export const getPost = async (title_slug: string) => {
   try {
-    const result = await fetch(`http://localhost:8081/posts/${title_slug}`);
+    const result = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${title_slug}`
+    );
     if (!result.ok) {
       return { data: null, error: { message: String(result.status) } as Error };
     }
@@ -22,7 +24,7 @@ export const createPost = async (post: {
   content: string;
 }) => {
   try {
-    await fetch("http://localhost:8081/posts", {
+    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +37,7 @@ export const createPost = async (post: {
 };
 
 export const updatePost = async (post: Post) => {
-  await fetch(`http://localhost:8081/posts/${post.title_slug}`, {
+  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/${post.title_slug}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +47,7 @@ export const updatePost = async (post: Post) => {
 };
 
 export const deletePost = async (post: Post) => {
-  await fetch(`http://localhost:8081/posts/${post.title_slug}`, {
+  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/${post.title_slug}`, {
     method: "DELETE",
   });
 };
