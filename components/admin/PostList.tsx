@@ -1,8 +1,8 @@
 "use client";
 
-import { getPosts } from "@/lib/api/posts";
-import Post from "@/components/admin/Post";
+import { Post, getPosts } from "@/lib/api/posts";
 import { useState, useEffect } from "react";
+import AdminPost from "./AdminPost";
 
 const PostList = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -19,7 +19,9 @@ const PostList = () => {
   return (
     <div className='flex flex-col gap-4'>
       {posts.map((post) => {
-        return <Post key={String(post._id)} post={post} refresh={getData} />;
+        return (
+          <AdminPost key={String(post._id)} post={post} refresh={getData} />
+        );
       })}
     </div>
   );
