@@ -1,20 +1,30 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RecentPostCard from "./RecentPostCard";
+import { Post, getPosts } from "@/lib/api/posts";
 
 const RecentPosts = ({ className }: { className: string }) => {
-  const [recents, setRecents] = useState([1, 2, 3]);
+  const [recents, setRecents] = useState<Post[]>([]);
+
+  const getRecents = async () => {
+    const results = await getPosts();
+    setRecents(results.slice(0, 3));
+  };
+
+  useEffect(() => {
+    getRecents();
+  }, []);
 
   return (
     <div
       className={cn(
-        "grid grid-rows-3 border border-foreground/30 gap-4 rounded-2xl p-6",
+        "flex flex-col lg:grid lg:grid-rows-3 border border-foreground/30 gap-4 rounded-2xl p-6",
         className
       )}>
       {recents.map((recent) => {
-        return <RecentPostCard />;
+        return <RecentPostCard post={recent} />;
       })}
     </div>
   );

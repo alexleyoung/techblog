@@ -12,7 +12,7 @@ const Events = ({ className }: { className?: string }) => {
         "grid grid-rows-3 border border-foreground/30 gap-4 rounded-2xl p-4",
         className
       )}>
-      {events.slice(0, 3).map((Event) => {
+      {events.map((Event) => {
         return <EventCard />;
       })}
     </div>
