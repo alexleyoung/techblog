@@ -7,16 +7,16 @@ import { useEffect, useState } from "react";
 
 const Post = () => {
   const { title_slug } = useParams();
-  const [post, setPost] = useState<Post>();
+  const [data, setData] = useState<Post>();
   const [error, setError] = useState<Error | null>(null);
 
   const findPost = async () => {
-    const { post, error } = await getPost(String(title_slug));
+    const { data, error } = await getPost(String(title_slug));
     if (error) {
       setError(error);
       console.log(error);
     } else {
-      setPost(post);
+      setData(data);
     }
   };
 
@@ -31,7 +31,7 @@ const Post = () => {
       </div>
     );
   }
-  if (!post) {
+  if (!data) {
     return (
       <div>
         <Skeleton className='w-full h-16 rounded-2xl translate-y-[160px]' />
@@ -47,16 +47,16 @@ const Post = () => {
   return (
     <>
       <section className='flex flex-col gap-8 pt-40'>
-        <h1 className='text-6xl'>{post.title}</h1>
+        <h1 className='text-6xl'>{data.title}</h1>
         <div className='flex justify-between w-full'>
           <h2 className='text-3xl'>
-            <em>{post.author}</em>
+            <em>{data.author}</em>
           </h2>
-          <h2 className='text-3xl'>{String(post.timestamp).slice(0, 10)}</h2>
+          <h2 className='text-3xl'>{String(data.timestamp).slice(0, 10)}</h2>
         </div>
       </section>
       <section className='mt-8'>
-        <p className='text-base'>{post.content}</p>
+        <p className='text-base'>{data.content}</p>
       </section>
     </>
   );
