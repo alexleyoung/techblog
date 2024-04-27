@@ -27,6 +27,7 @@ import { Label } from "@/components/ui/label";
 import { Trash, NotebookPen } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
+import CreateForm from "./Create/CreateForm";
 
 const Post = ({
   post,
@@ -35,7 +36,9 @@ const Post = ({
   post: Post;
   refresh: () => Promise<void>;
 }) => {
-  const [content, setContent] = useState(post.content);
+  const [title, setTitle] = useState(String(post.title));
+  const [author, setAuthor] = useState(String(post.author));
+  const [content, setContent] = useState(String(post.content));
 
   return (
     <div
@@ -56,41 +59,19 @@ const Post = ({
                 Make changes to the post here. Click save when you're done.
               </DialogDescription>
             </DialogHeader>
-            <div className='grid gap-6 py-4'>
-              <div className='flex flex-col gap-3'>
-                <Label htmlFor='title'>Title</Label>
-                <Input id='title' value={`${post.title}`} />
-              </div>
-              <div className='flex flex-col gap-2'>
-                <Label htmlFor='author'>Author(s)</Label>
-                <Input id='author' value={`${post.author}`} />
-              </div>
-              <div className='flex flex-col gap-2'>
-                <Label htmlFor='Content'>Content</Label>
-                <Textarea
-                  id='content'
-                  value={String(content)}
-                  className='h-60'
-                  onChange={(e) => setContent(e.target.value)}
-                />
-              </div>
-            </div>
-            <DialogClose>
-              <Button
+            <CreateForm contentHeight='h-60' post={post} refresh={refresh}>
+              <DialogClose
                 type='submit'
-                onClick={async () => {
-                  await updatePost(post);
-                  refresh();
-                }}>
-                Save changes
-              </Button>
-            </DialogClose>
+                className='w-20 rounded-xl px-3 py-1 bg-foreground/10 hover:bg-foreground/20 transition-colors duration-300'>
+                Save
+              </DialogClose>
+            </CreateForm>
           </DialogContent>
         </Dialog>
       </h2>
       <p>{String(post.timestamp).slice(0, 10)}</p>
       <p className='flex justify-between'>
-        {post?.content.slice(0, 30) + "..."}
+        {post.content.slice(0, 30) + "..."}
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant='destructive'>

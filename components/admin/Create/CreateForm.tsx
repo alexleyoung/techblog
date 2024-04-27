@@ -14,16 +14,29 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { createPost } from "@/lib/api/crud";
+import { Post, createPost, updatePost } from "@/lib/api/crud";
 
 const formSchema = z.object({
-  title: z.string().min(3).max(100),
-  author: z.string().min(2).max(100),
-  content: z.string().min(3),
+  title: z.string().min(1).max(100),
+  author: z.string().min(1).max(100),
+  content: z.string().min(1),
 });
 
-const CreateForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
+const CreateForm = ({
+  children,
+  titleText,
+  contentHeight = "h-96",
+  post,
+  refresh,
+}: {
+  children: React.ReactNode;
+  titleText?: string;
+  submitText?: string;
+  contentHeight?: string;
+  post?: Post | null;
+  refresh?: (() => Promise<void>) | null;
+}) => {
+  let form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
@@ -31,10 +44,25 @@ const CreateForm = () => {
       content: "",
     },
   });
+  if (post) {
+    form = useForm<z.infer<typeof formSchema>>({
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        title: String(post.title),
+        author: String(post.author),
+        content: String(post.content),
+      },
+    });
+  }
 
   const handleSubmit = async () => {
-    await createPost(form.getValues());
-    form.reset();
+    if (!post && !refresh) {
+      await createPost(form.getValues());
+      form.reset();
+    } else if (post && refresh) {
+      await updatePost({ ...post, ...form.getValues() });
+      refresh();
+    }
   };
 
   return (
@@ -42,7 +70,7 @@ const CreateForm = () => {
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
         className='h-full flex flex-col gap-4'>
-        <h1 className='text-4xl font-light'>Make new post</h1>
+        {titleText && <h1 className='text-3xl'>{titleText}</h1>}
         <FormField
           control={form.control}
           name='title'
@@ -81,14 +109,19 @@ const CreateForm = () => {
               <FormItem>
                 <FormLabel>Content</FormLabel>
                 <FormControl>
-                  <Textarea placeholder='Content' {...field} className='h-96' />
+                  <Textarea
+                    placeholder='Content'
+                    {...field}
+                    className={contentHeight}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             );
           }}
         />
-        <Button type='submit'>Submit</Button>
+        {/* <Button type='submit'>{submitText}</Button> */}
+        {children}
       </form>
     </Form>
   );
