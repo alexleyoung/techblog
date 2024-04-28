@@ -34,7 +34,7 @@ const AdminPost = ({
 }) => {
   return (
     <div
-      key={String(post.id)}
+      key={String(post._id)}
       className='border border-foreground/20 p-6 rounded-2xl min-h-32 hover:scale-[102%] hover:bg-muted/30 transition-all duration-300'>
       <h2 className='text-2xl flex justify-between'>
         {post.title}
@@ -63,9 +63,9 @@ const AdminPost = ({
       </h2>
       <p>{String(post.timestamp).slice(0, 10)}</p>
       <p className='flex justify-between'>
-        {post.content.length > 30
-          ? post.content.slice(0, 30) + "..."
-          : post.content}
+        {post.description.length > 30
+          ? post.description.slice(0, 30) + "..."
+          : post.description}
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant='destructive'>

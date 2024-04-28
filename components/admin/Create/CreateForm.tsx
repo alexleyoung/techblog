@@ -12,20 +12,20 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Post, createPost, updatePost } from "@/lib/api/posts";
 
 const formSchema = z.object({
   title: z.string().min(1).max(100),
   author: z.string().min(1).max(100),
+  description: z.string().min(1).max(100),
   content: z.string().min(1),
 });
 
 const CreateForm = ({
   children,
   titleText,
-  contentHeight = "h-96",
+  contentHeight = "h-72",
   post,
   refresh,
 }: {
@@ -41,6 +41,7 @@ const CreateForm = ({
     defaultValues: {
       title: String(post ? post.title : ""),
       author: String(post ? post.author : ""),
+      description: String(post ? post.description : ""),
       content: String(post ? post.content : ""),
     },
   });
@@ -93,6 +94,21 @@ const CreateForm = ({
         />
         <FormField
           control={form.control}
+          name='description'
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Description</FormLabel>
+                <FormControl>
+                  <Input placeholder='Description' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
+        <FormField
+          control={form.control}
           name='content'
           render={({ field }) => {
             return (
@@ -110,7 +126,6 @@ const CreateForm = ({
             );
           }}
         />
-        {/* <Button type='submit'>{submitText}</Button> */}
         {children}
       </form>
     </Form>

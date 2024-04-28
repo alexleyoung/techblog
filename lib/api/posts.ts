@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb";
+
 export const getPosts = async () => {
   const result = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/`);
   const posts = await result.json();
@@ -19,45 +21,70 @@ export const getPost = async (title_slug: string) => {
 };
 
 export const createPost = async (post: {
-  title: string;
-  author: string;
-  content: string;
+  title: String;
+  author: String;
+  description: String;
+  content: String;
 }) => {
   try {
-    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(post),
     });
+    if (!response.ok) {
+      return { error: { message: String(response.status) } as Error };
+    }
   } catch (error) {
     return error;
   }
 };
 
 export const updatePost = async (post: Post) => {
-  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/${post.title_slug}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(post),
-  });
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${post.title_slug}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(post),
+      }
+    );
+    if (!response.ok) {
+      return { error: { message: String(response.status) } as Error };
+    }
+  } catch (error) {
+    return error;
+  }
 };
 
 export const deletePost = async (post: Post) => {
-  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/${post.title_slug}`, {
-    method: "DELETE",
-  });
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${post.title_slug}`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (!response.ok) {
+      return { error: { message: String(response.status) } as Error };
+    }
+  } catch (error) {
+    return error;
+  }
 };
 
 export type Post = {
-  _id: string;
-  id: Number;
-  title: String;
-  title_slug: String;
-  author: String;
-  content: String;
+  _id: ObjectId;
+  title: string;
+  author: string;
+  description: string;
+  content: string;
   timestamp: Date;
+  title_slug: string;
+  lastUpdated?: Date;
 };
