@@ -9,7 +9,7 @@ const Login = async () => {
   }
 
   return (
-    <main className='h-screen grid place-items-center'>
+    <main className='h-screen grid place-items-center p-16'>
       <LoginForm />
     </main>
   );
