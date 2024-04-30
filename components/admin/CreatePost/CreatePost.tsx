@@ -25,7 +25,7 @@ const formSchema = z.object({
 const PostForm = ({
   children,
   titleText,
-  contentHeight = "h-72",
+  contentHeight = "h-56",
   post,
   refresh,
 }: {
