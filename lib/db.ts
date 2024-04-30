@@ -27,4 +27,4 @@ interface SessionDoc {
   user_id: string;
 }
 
-connect();
+// connect();

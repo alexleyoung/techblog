@@ -9,6 +9,7 @@ const Article = () => {
   const { title_slug } = useParams();
   const [data, setData] = useState<Post>();
   const [error, setError] = useState<Error | null>(null);
+  const [date, setDate] = useState<String>("");
 
   const findPost = async () => {
     const { data, error } = await getPost(String(title_slug));
@@ -17,6 +18,13 @@ const Article = () => {
       console.log(error);
     } else {
       setData(data);
+      setDate(
+        new Date(data.timestamp).toLocaleDateString("en-us", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
+      );
     }
   };
 
@@ -48,14 +56,16 @@ const Article = () => {
     <>
       <section className='flex flex-col gap-8 pt-40'>
         <h1 className='text-6xl'>{data.title}</h1>
-        <div className='flex justify-between w-full'>
+        <div className='flex flex-col sm:flex-row gap-4 justify-between w-full'>
           <h2 className='text-3xl'>
             <em>{data.author}</em>
           </h2>
-          <h2 className='text-3xl'>{String(data.timestamp).slice(0, 10)}</h2>
+          <h2 className='text-2xl sm:text-3xl'>{date}</h2>
         </div>
       </section>
       <section className='mt-8'>
+        <p className='text-base'>{data.description}</p>
+        <div className='border-t border-foreground w-full my-8' />
         <p className='text-base'>{data.content}</p>
       </section>
     </>
