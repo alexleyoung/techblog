@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 
-const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8081";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const getPosts = async () => {
   const result = await fetch(`${baseUrl}/posts/`);
