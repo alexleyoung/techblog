@@ -2,7 +2,7 @@
 
 ## 319 Spring '24 Final
 
-Alex & Kayleee
+Alex & Kaylee
 
 ### About
 
