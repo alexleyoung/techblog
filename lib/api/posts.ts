@@ -1,15 +1,15 @@
 import { ObjectId } from "mongodb";
 
+const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8081";
+
 export const getPosts = async () => {
-  const result = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/`);
+  const result = await fetch(`${baseUrl}/posts/`);
   const posts = await result.json();
   return posts as Post[];
 };
 export const getPost = async (title_slug: string) => {
   try {
-    const result = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${title_slug}`
-    );
+    const result = await fetch(`${baseUrl}/posts/${title_slug}`);
     if (!result.ok) {
       return { data: null, error: { message: String(result.status) } as Error };
     }
@@ -27,7 +27,7 @@ export const createPost = async (post: {
   content: String;
 }) => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/`, {
+    const response = await fetch(`${baseUrl}/posts/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,16 +44,13 @@ export const createPost = async (post: {
 
 export const updatePost = async (post: Post) => {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${post.title_slug}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(post),
-      }
-    );
+    const response = await fetch(`${baseUrl}/posts/${post.title_slug}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(post),
+    });
     if (!response.ok) {
       return { error: { message: String(response.status) } as Error };
     }
@@ -64,12 +61,9 @@ export const updatePost = async (post: Post) => {
 
 export const deletePost = async (post: Post) => {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${post.title_slug}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`${baseUrl}/posts/${post.title_slug}`, {
+      method: "DELETE",
+    });
     if (!response.ok) {
       return { error: { message: String(response.status) } as Error };
     }

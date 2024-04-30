@@ -32,6 +32,8 @@ const AdminPost = ({
   post: Post;
   refresh: () => Promise<void>;
 }) => {
+  const date = new Date(post.timestamp);
+
   return (
     <div
       key={String(post._id)}
@@ -61,7 +63,13 @@ const AdminPost = ({
           </DialogContent>
         </Dialog>
       </h2>
-      <p>{String(post.timestamp).slice(0, 10)}</p>
+      <p>
+        {date.toLocaleDateString("en-us", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })}
+      </p>
       <p className='flex justify-between'>
         {post.description.length > 30
           ? post.description.slice(0, 30) + "..."
