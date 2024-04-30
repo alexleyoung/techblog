@@ -2,11 +2,14 @@ import { ObjectId } from "mongodb";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
+// get all events
 export const getEvents = async () => {
   const result = await fetch(`${baseUrl}/events/`);
   const events = await result.json();
   return events as Event[];
 };
+
+// get a single event by title slug
 export const getEvent = async (title_slug: string) => {
   try {
     const result = await fetch(`${baseUrl}/events/${title_slug}`);
@@ -20,6 +23,7 @@ export const getEvent = async (title_slug: string) => {
   }
 };
 
+// create a new event
 export const createEvent = async (event: {
   title: String;
   date: String;
@@ -42,6 +46,7 @@ export const createEvent = async (event: {
   }
 };
 
+// update an event
 export const updateEvent = async (event: Event) => {
   try {
     const response = await fetch(`${baseUrl}/posts/${event.title_slug}`, {
@@ -59,6 +64,7 @@ export const updateEvent = async (event: Event) => {
   }
 };
 
+// delete an event
 export const deleteEvent = async (event: Event) => {
   try {
     const response = await fetch(`${baseUrl}/posts/${event.title_slug}`, {
