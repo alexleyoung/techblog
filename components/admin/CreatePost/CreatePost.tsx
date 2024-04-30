@@ -22,7 +22,7 @@ const formSchema = z.object({
   content: z.string().min(1),
 });
 
-const CreateForm = ({
+const PostForm = ({
   children,
   titleText,
   contentHeight = "h-72",
@@ -132,4 +132,4 @@ const CreateForm = ({
   );
 };
 
-export default CreateForm;
+export default PostForm;

@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
 import { Trash, NotebookPen } from "lucide-react";
-import CreateForm from "./Create/CreateForm";
+import PostForm from "./CreatePost/CreatePost";
 
 const AdminPost = ({
   post,
@@ -53,13 +53,13 @@ const AdminPost = ({
                 Make changes to the post here. Click save when you're done.
               </DialogDescription>
             </DialogHeader>
-            <CreateForm contentHeight='h-60' post={post} refresh={refresh}>
+            <PostForm contentHeight='h-60' post={post} refresh={refresh}>
               <DialogClose
                 type='submit'
                 className='w-20 rounded-xl px-3 py-1 bg-foreground/10 hover:bg-foreground/20 transition-colors duration-300'>
                 Save
               </DialogClose>
-            </CreateForm>
+            </PostForm>
           </DialogContent>
         </Dialog>
       </h2>
