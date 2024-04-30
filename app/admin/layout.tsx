@@ -3,12 +3,12 @@ import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
-  // const { user } = await validateRequest();
-  // if (!user) {
-  //   return redirect("/");
-  // } else if (user.id !== process.env.ADMIN) {
-  //   return redirect("/");
-  // }
+  const { user } = await validateRequest();
+  if (!user) {
+    return redirect("/");
+  } else if (user.id !== process.env.ADMIN) {
+    return redirect("/");
+  }
 
   return (
     <>
