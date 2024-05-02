@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import RecentPostCard from "./RecentPostCard";
 import { Post, getPosts } from "@/lib/api/posts";
 
-const RecentPosts = ({ className }: { className: string }) => {
+const RecentPosts = ({ className }: { className?: string }) => {
   const [recents, setRecents] = useState<Post[]>([]);
 
   const getRecents = async () => {

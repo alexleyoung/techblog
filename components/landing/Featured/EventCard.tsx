@@ -4,7 +4,7 @@ const EventCard = ({ event }: { event: Event }) => {
   const date = new Date(event.date);
 
   return (
-    <div className='w-full grid aspect-square place-items-center border shadow-lg hover:scale-105 transition-all duration-300 rounded-sm text-lg sm:text-sm md:text-base lg:text-base'>
+    <div className='w-full grid aspect-square place-items-center border shadow-lg hover:scale-105 transition-all duration-300 rounded-sm text-lg sm:text-sm md:text-base'>
       <span>
         <h1 className='font-semibold'>
           {date

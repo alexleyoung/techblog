@@ -13,7 +13,7 @@ export const getPost = async (title_slug: string) => {
     if (!result.ok) {
       return { data: null, error: { message: String(result.status) } as Error };
     }
-    const data = await result.json();
+    const data: Post = await result.json();
     return { data: data as Post, error: null };
   } catch (error) {
     return { data: null, error: error as Error };
