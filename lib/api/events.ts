@@ -26,7 +26,7 @@ export const getEvent = async (title_slug: string) => {
 // create a new event
 export const createEvent = async (event: {
   title: String;
-  date: String;
+  date: Date;
   description: String;
   location: String;
 }) => {
