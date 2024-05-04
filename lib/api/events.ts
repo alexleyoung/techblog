@@ -47,9 +47,9 @@ export const createEvent = async (event: {
 };
 
 // update an event
-export const updateEvent = async (event: Event) => {
+export const updateEvent = async (event: Update) => {
   try {
-    const response = await fetch(`${baseUrl}/posts/${event.title_slug}`, {
+    const response = await fetch(`${baseUrl}/events/${event.title_slug}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -67,7 +67,7 @@ export const updateEvent = async (event: Event) => {
 // delete an event
 export const deleteEvent = async (event: Event) => {
   try {
-    const response = await fetch(`${baseUrl}/posts/${event.title_slug}`, {
+    const response = await fetch(`${baseUrl}/events/${event.title_slug}`, {
       method: "DELETE",
     });
     if (!response.ok) {
@@ -86,4 +86,11 @@ export type Event = {
   location: string;
   title_slug: string;
   lastUpdated?: Date;
+};
+
+export type Update = {
+  title: string;
+  description: string;
+  date: Date;
+  location: string;
 };

@@ -13,7 +13,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Aside />
-      <div className='md:pl-48'>{children}</div>
+      <div className='pb-24 md:pb-0 md:pl-48'>{children}</div>
     </>
   );
 };

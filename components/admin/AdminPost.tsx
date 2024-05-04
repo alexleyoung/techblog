@@ -85,7 +85,7 @@ const AdminPost = ({
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
               <AlertDialogDescription>
                 This action cannot be undone. This will permanently delete the
-                post and remove it from the server.
+                post and remove it from the database.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>

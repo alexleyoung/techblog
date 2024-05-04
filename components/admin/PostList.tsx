@@ -26,8 +26,6 @@ const PostList = () => {
           <Skeleton className='w-full h-32' />
           <Skeleton className='w-full h-32' />
           <Skeleton className='w-full h-32' />
-          <Skeleton className='w-full h-32' />
-          <Skeleton className='w-full h-32' />
         </>
       ) : (
         posts.map((post) => {

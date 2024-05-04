@@ -23,7 +23,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
-import { createEvent } from "@/lib/api/events";
+import { Event, createEvent, updateEvent } from "@/lib/api/events";
 
 const FormSchema = z.object({
   title: z
@@ -43,20 +43,38 @@ const FormSchema = z.object({
     .max(100),
 });
 
-function EventForm() {
+function EventForm({
+  children,
+  event,
+  refresh,
+}: {
+  children: React.ReactNode;
+  event?: Event;
+  refresh?: () => Promise<void>;
+}) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      title: "",
-      description: "",
-      //   date: new Date(),
-      location: "",
+      title: event?.title || "",
+      description: event?.description || "",
+      date: event ? new Date(event.date) : new Date(),
+      location: event?.location || "",
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    createEvent(data);
-    form.reset({ title: "", description: "", date: new Date(), location: "" });
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    if (event && refresh) {
+      await updateEvent({ ...event, ...data });
+      refresh();
+    } else {
+      await createEvent(data);
+      form.reset({
+        title: "",
+        description: "",
+        date: new Date(),
+        location: "",
+      });
+    }
   }
 
   return (
@@ -149,9 +167,7 @@ function EventForm() {
             }}
           />
         </div>
-        <Button type='submit' className='mt-4'>
-          Create Event
-        </Button>
+        {children}
       </form>
     </Form>
   );
