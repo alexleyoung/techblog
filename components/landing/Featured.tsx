@@ -9,9 +9,6 @@ const Featured = () => {
         <div className='flex flex-col items-center lg:flex-1'>
           <h1 className='text-2xl md:tex-3xl'>Events</h1>
           <Events />
-          <Link href='articles' className='self-end px-2 tracking-wide'>
-            See all events here.
-          </Link>
         </div>
         <div className='flex flex-col items-center lg:flex-[3_3_0%]'>
           <h1 className='text-2xl md:tex-3xl'>Recent Posts</h1>

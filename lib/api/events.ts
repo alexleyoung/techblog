@@ -47,7 +47,7 @@ export const createEvent = async (event: {
 };
 
 // update an event
-export const updateEvent = async (event: Update) => {
+export const updateEvent = async (event: Event) => {
   try {
     const response = await fetch(`${baseUrl}/events/${event.title_slug}`, {
       method: "PUT",
@@ -86,11 +86,4 @@ export type Event = {
   location: string;
   title_slug: string;
   lastUpdated?: Date;
-};
-
-export type Update = {
-  title: string;
-  description: string;
-  date: Date;
-  location: string;
 };
