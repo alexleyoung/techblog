@@ -7,7 +7,7 @@ const Footer = () => {
         <p>&copy;AYKM 2024</p>
         <div className='flex flex-col gap-2'>
           <Link
-            href=''
+            href='/about'
             className='hover:text-primary/50 transition-colors duration-300'>
             About
           </Link>
