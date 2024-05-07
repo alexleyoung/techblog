@@ -33,7 +33,7 @@ const About = () => {
                 </div>
                 <div className='grid place-items-center h-full'>
                   <Image
-                    src='/images/alex.jpg'
+                    src='/images/alex.JPG'
                     alt='Picture of Alex Young'
                     width={1242}
                     height={1242}
