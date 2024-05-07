@@ -1,45 +1,27 @@
+"use client";
 import Link from "next/link";
-import * as React from "react";
+import { useState, useEffect } from "react";
+import { Post, getPosts } from "@/lib/api/posts";
+import Article from "@/components/articles/Article";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { getPosts } from "@/lib/api/posts";
+const Articles = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
 
-const Articles = async () => {
-  const data = await getPosts();
+  useEffect(() => {
+    getData();
+  }, []);
 
-  function Article({ post }: { post: any }) {
-    return (
-      <Link href={`/articles/${post.title_slug}`}>
-        <Card className="w-[700px] m-3  ">
-          <CardHeader>
-            <CardTitle>{post.title}</CardTitle>
-            <CardDescription>{post.description}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p>{post.content}</p>
-          </CardContent>
-          <CardFooter className="flex justify-between">
-            <p>{post.timestamp}</p>
-            <p>{post.author}</p>
-          </CardFooter>
-        </Card>
-      </Link>
-    );
-  }
+  const getData = async () => {
+    const data = await getPosts();
+    setPosts(data);
+  };
 
   return (
     <div>
       <h1 className="text-4xl text-center m-9">Articles</h1>
       <div className="flex flex-col items-center">
-        {data.map((post) => {
-          return <Article post={post} />;
+        {posts.map((post) => {
+          return <Article key={post.title_slug} post={post} />;
         })}
       </div>
       <Link href="/">
