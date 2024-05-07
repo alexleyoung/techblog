@@ -6,8 +6,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-import Alex from "@/public/images/alex.jpg";
-import Kaylee from "@/public/images/kaylee.jpg";
 
 const About = () => {
   return (
@@ -35,8 +33,10 @@ const About = () => {
                 </div>
                 <div className='grid place-items-center h-full'>
                   <Image
-                    src={Alex}
+                    src='/images/alex.jpg'
                     alt='Picture of Alex Young'
+                    width={1242}
+                    height={1242}
                     className='aspect-square rounded-lg object-cover'
                   />
                 </div>
@@ -50,8 +50,10 @@ const About = () => {
                 </div>
                 <div className='grid place-items-center h-full'>
                   <Image
-                    src={Kaylee}
+                    src='/images/kaylee.jpg'
                     alt='Picture of Kaylee Maczek'
+                    width={1242}
+                    height={1242}
                     className='aspect-square rounded-lg object-cover'
                   />
                 </div>
