@@ -43,7 +43,7 @@ const About = () => {
               </div>
             </CarouselItem>
             <CarouselItem>
-              <div className='aspect-square size-full border border-foreground/20 rounded-tr-2xl rounded-bl-2xl shadow-lg p-4 flex flex-col gap-2'>
+              <div className='aspect-square size-full border border-foreground/20 rounded-tl-2xl rounded-br-2xl shadow-lg p-4 flex flex-col gap-2'>
                 <div className='flex flex-col gap-2'>
                   <h1 className='text-xl'>Kaylee Maczek</h1>
                   <h2> First-Year CS & Cybersecurity</h2>
